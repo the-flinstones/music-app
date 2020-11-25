@@ -5,13 +5,13 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import Home from "./components/Home";
+import Home from "./pages/home/Home";
 import Genres from "./components/Genres";
 import UserProfile from "./components/UserProfile";
 import NotFound from "./components/NotFound";
 import Navbar from "./components/Navbar";
 import Albums from "./components/Albums";
-import Artists from "./components/Artists";
+import Artists from "./pages/artists-page/Artists";
 import Drawer from "./components/Drawer";
 import Cookies from "js-cookie";
 
