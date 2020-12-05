@@ -1,6 +1,22 @@
 import React, { Component } from "react";
 
-class Artists extends Component {
+class SongsQueue extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+     subcategory:''
+    };
+  }
+  componentDidMount() {
+    console.log(this.props);
+
+    this.setState(
+      {
+        subcategory: this.props.match.params.subcategory,
+        
+      }
+    );
+  }
   render() {
     return (
       <div>
@@ -12,7 +28,7 @@ class Artists extends Component {
             webkitTextFillColor: "transparent",
           }}
         >
-          Artists Page
+          Song queue{this.props.match.params.subcategory}
         </h1>
         <br /> <br />
       </div>
@@ -20,4 +36,4 @@ class Artists extends Component {
   }
 }
 
-export default Artists;
+export default SongsQueue;

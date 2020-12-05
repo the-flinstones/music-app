@@ -1,7 +1,15 @@
 import React, { Component } from "react";
 import SongService from '../../service/song-service'
 import SwiperNav   from "../../components/swiper/Swiper";
-
+import Button from '@material-ui/core/Button';
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+});
 class Home extends Component {
   constructor(props){
     super(props);
@@ -30,6 +38,8 @@ class Home extends Component {
   
  
   render() {
+
+    
     return (
       <div >
         <div className="page-header">
@@ -49,8 +59,11 @@ class Home extends Component {
           <div>
             {
               this.state.categories.map(category=>
-               <div className="category" >
+               <div className="category">
+                 <div className="category-header"  style={{display:"flex",justifyContent:"space-between"}}>
               <span className="title"><h2>{category.categoryId.toUpperCase()}</h2> </span>
+              <Button style={{color:"white"}} onClick={()=>this.props.history.push(`${category.categoryId}`)}> View all</Button>
+      </div>
               <SwiperNav categoryId={category.categoryId}/>
             </div>)
             }

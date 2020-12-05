@@ -11,7 +11,10 @@ import UserProfile from "./components/UserProfile";
 import NotFound from "./components/NotFound";
 import Navbar from "./components/Navbar";
 import Albums from "./components/Albums";
-import Artists from "./pages/artists-page/Artists";
+import Artists from "./pages/artist-pages/Artists"
+import Actors from "./pages/actor-page/Actors"
+import Category from "./pages/category-page/Category"
+import SongsQueue from "./pages/song-page/SongsQueue"
 import Drawer from "./components/Drawer";
 import Cookies from "js-cookie";
 
@@ -25,9 +28,13 @@ function Routes() {
 
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/genres" component={Genres} />
+        {/* <Route path="/mood" component={Genres} />
         <Route path="/albums" component={Albums} />
-        <Route path="/artists" component={Artists} />
+        <Route path="/artist" component={Artists} />
+        <Route path="/top-actors" component={Actors} /> */}
+      
+        <Route exact path="/:category" component={Category} />
+        <Route exact path="/songs/:subcategory" component={SongsQueue} />
         <PrivateRoute
           path="/user-profile"
           component={UserProfile}

@@ -4,7 +4,7 @@ import SongService from "../../service/song-service"
 import './swiper.css'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import {withRouter} from 'react-router-dom'
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
@@ -35,25 +35,23 @@ class SwiperNav extends Component{
     return (
       <div style={{maxWidth:"100%"}}>
                 <Swiper
-              spaceBetween={5}
+              spaceBetween={1}
               slidesPerView={8}
               onSlideChange={() => console.log('slide change')}
               onSwiper={(swiper) => console.log(swiper)}
               navigation
             >{
               this.state.subCategories.map(subcategory=>
-              <SwiperSlide ><div style={{backgroundColor:"white"}}>
-             
-                {/* <>{subcategory.subCategoryId} */}
-                <div className="container">
+              <SwiperSlide >
+                {/* <div style={{backgroundColor:"white"}}> */}
+                <div className="container" onClick={()=>console.log(subcategory.subCategoryId )} onClick={()=>this.props.history.push(`/songs/${subcategory.subCategoryId}`)}>
                 <img className="label-image"  src={`${subcategory.imageUrl}`}     />
                 <div class="overlay">
                   <div class="text">{subcategory.subCategoryId}</div>
-                </div>
-             
-        </div>    
-     
-              </div></SwiperSlide>
+                </div>             
+                </div>    
+              {/* </div> */}
+              </SwiperSlide>
               )
             }
              
@@ -69,4 +67,4 @@ class SwiperNav extends Component{
 
   
 }
-export default SwiperNav
+export default withRouter(SwiperNav)
