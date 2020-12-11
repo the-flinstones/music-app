@@ -34,7 +34,7 @@ function Routes() {
         <Route path="/top-actors" component={Actors} /> */}
       
         <Route exact path="/:category" component={Category} />
-        <Route exact path="/songs/:subcategory" component={SongsQueue} />
+        <Route exact path="/songs/:category/:subcategory" component={SongsQueue} />
         <PrivateRoute
           path="/user-profile"
           component={UserProfile}

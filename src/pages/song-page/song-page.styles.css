@@ -1,0 +1,52 @@
+  .song-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr;
+    grid-template-rows: 400px 380px 90px;
+    align-content: stretch;
+
+  }
+  .queue{
+    grid-row-start: 1;
+    grid-row-end:3 ;
+    grid-column-start: 1;
+    grid-column-end:2 ;
+    background-color: rgb(2, 199, 189);
+  }
+  .song-info{
+    grid-row-start: 1;
+    grid-row-end:2 ;
+    grid-column-start: 2;
+    grid-column-end:3 ;
+    background-color: rgb(0, 117, 126);
+  }
+  .lyrics-scroll{
+    grid-row-start: 1;
+    grid-row-end:2 ;
+    grid-column-start: 3;
+    grid-column-end:4 ;
+    background-color: rgb(0, 106, 155);
+  }
+  .other-artists{
+    grid-row-start: 2;
+    grid-row-end:3 ;
+    grid-column-start: 2;
+    grid-column-end:3 ;
+    background-color: rgb(1, 153, 212);
+  }
+  .other-moods{
+    grid-row-start: 2;
+    grid-row-end:3 ;
+    grid-column-start: 3;
+    grid-column-end:4 ;
+    background-color: rgb(0, 86, 143);
+  }
+  .player{
+    grid-row-start: 3;
+    grid-row-end:4 ;
+    grid-column-start: 1;
+    grid-column-end:4 ;
+    background-color: rgb(1, 53, 53);
+  }
+  .hint{
+    place-self: center;
+  }

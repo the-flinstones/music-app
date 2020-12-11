@@ -44,7 +44,7 @@ class SwiperNav extends Component{
               this.state.subCategories.map(subcategory=>
               <SwiperSlide >
                 {/* <div style={{backgroundColor:"white"}}> */}
-                <div className="container" onClick={()=>console.log(subcategory.subCategoryId )} onClick={()=>this.props.history.push(`/songs/${subcategory.subCategoryId}`)}>
+                <div className="container" onClick={()=>this.props.history.push(`/songs/${this.props.categoryId}/${subcategory.subCategoryId}`)}>
                 <img className="label-image"  src={`${subcategory.imageUrl}`}     />
                 <div class="overlay">
                   <div class="text">{subcategory.subCategoryId}</div>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import SpacingGrid from '../../components/SpacingGrid'
 
 import SongService from '../../service/song-service'
 class Category extends Component {
@@ -7,19 +8,21 @@ class Category extends Component {
     this.state={
       subcategories:[],
       category:this.props.match.params.category,
-      
-      
+            
     }
 
   }
   componentDidMount() {  
+  this.getSubCategories();
+  }
+
+  getSubCategories =()=> {
     SongService.getSubCategories(this.state.category)
     .then((response)=>{
       this.setState({
         subcategories:response.data
       },()=>{console.log(response.data)})
     }) 
-
   }
   render() {
     return (
@@ -33,10 +36,12 @@ class Category extends Component {
           }}
         >
           Category
-          {console.log(this.props.match.params.category)}
-          {this.props.match.params.category}
+          {console.log(this.state.subcategories,)}
+          {this.props.match.params.category}****
         </h1>
-        <br /> <br />
+        <br/> <br />
+        <SpacingGrid subcategories={this.state.subcategories} categoryId={this.state.category}/>
+        
       </div>
     );
   }

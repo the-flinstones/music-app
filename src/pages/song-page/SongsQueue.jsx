@@ -1,36 +1,75 @@
 import React, { Component } from "react";
-
+import SongService from '../../service/song-service'
+import './song-page.styles.css'
 class SongsQueue extends Component {
   constructor(props) {
     super(props);
+    
     this.state = {
-     subcategory:''
+      category: this.props.match.params.category,
+      subcategory: this.props.match.params.subcategory,
+     songs:[]
     };
   }
   componentDidMount() {
-    console.log(this.props);
+  if(this.state.category=="artist")
+  SongService.getSongsByArtist(this.state.subcategory)
+  .then((response)=>{
+    this.setState({
+      songs:response.data
+    },()=>{console.log(this.state.songs)})
+  })  ;
 
-    this.setState(
-      {
-        subcategory: this.props.match.params.subcategory,
-        
-      }
-    );
+  if(this.state.category=="mood")
+  SongService.getSongsByMood(this.state.subcategory)
+  .then((response)=>{
+    this.setState({
+      songs:response.data
+    },()=>{console.log(this.state.songs)})
+  })  ;
+  if(this.state.category=="language")
+  SongService.getSongsByLanguage(this.state.subcategory)
+  .then((response)=>{
+    this.setState({
+      songs:response.data
+    },()=>{console.log(this.state.songs)})
+  })  ;
+  if(this.state.category=="albums")
+  SongService.getSongsByLanguage(this.state.subcategory)
+  .then((response)=>{
+    this.setState({
+      songs:response.data
+    },()=>{console.log(this.state.songs)})
+  })  ;
+    
+  if(this.state.category=="top-actors")
+  SongService.getSongsByActor(this.state.subcategory)
+  .then((response)=>{
+    this.setState({
+      songs:response.data
+    },()=>{console.log(this.state.songs)})
+  })  ;
+    
   }
   render() {
+    const {category,subcategory} =this.state
     return (
       <div>
-        <h1
-          style={{
-            marginTop: "8%",
-            background: "linear-gradient(45deg, #FE3762 30%, #FF742B 90%)",
-            webkitBackgroundClip: "text",
-            webkitTextFillColor: "transparent",
-          }}
-        >
-          Song queue{this.props.match.params.subcategory}
-        </h1>
-        <br /> <br />
+{/*         
+      <p>
+          Song queue<br/>{category}<br/>{subcategory}
+        </p>
+        <hr/> */}
+       <div className="song-container">
+         <div className="queue">
+         queue
+         </div>
+         <div className="player"></div>
+         <div className="song-info"></div>
+         <div className="lyrics-scroll"></div>
+         <div className="other-artists"></div>
+         <div className="other-moods"></div>
+       </div>
       </div>
     );
   }
