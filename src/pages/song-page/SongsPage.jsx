@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import SongService from '../../service/song-service'
 import PlayerControl from '../../components/PlayerControl/PlayerControl.component'
 import SongsInQueue from '../../components/songs-in-queue/SongsInQueue'
+import SwiperNav   from "../../components/swiper/Swiper";
+import SpacingGrid from '../../components/SpacingGrid'
 import './song-page.styles.css'
 class SongsPage extends Component {
   constructor(props) {
@@ -11,7 +13,8 @@ class SongsPage extends Component {
       category: this.props.match.params.category,
       subcategory: this.props.match.params.subcategory,
      songs:[],
-     currentSong:''
+     currentSong:'',
+     lyrics:[]
     };
   }
   componentDidMount() {
@@ -55,10 +58,12 @@ class SongsPage extends Component {
     
   }
 
-  handleSongPlay=(song)=>{
+  handleSongPlay=(song)=>{     
     console.log(song)
     this.setState({
-      currentSong:song
+      currentSong:song,
+      lyrics:song.songLyrics
+
     })
   }
   render() {
@@ -76,9 +81,14 @@ class SongsPage extends Component {
          <div className="song-info" >
            <img className="banner"  src={this.state.currentSong.bannerUrl} />
          </div>
-         <div className="lyrics-scroll"></div>
-         <div className="other-artists"></div>
-         <div className="other-moods"></div>
+       
+         <div className="lyrics-scroll">  {this.state.currentSong.title ?<div><h2>{this.state.currentSong.title.toUpperCase()}</h2></div>:""}<span className="lyrics">{this.state.lyrics}</span></div>
+         {/* <div className="other-subcategories"> */}
+           {/* {this.state.category? <SpacingGrid subcategories={this.state.subcategory} categoryId={this.state.category}/>:""} */}
+           
+          
+         {/* </div> */}
+         
        </div>
       </div>
     );
