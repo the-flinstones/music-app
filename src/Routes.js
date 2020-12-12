@@ -14,7 +14,7 @@ import Albums from "./components/Albums";
 import Artists from "./pages/artist-pages/Artists"
 import Actors from "./pages/actor-page/Actors"
 import Category from "./pages/category-page/Category"
-import SongsQueue from "./pages/song-page/SongsQueue"
+import SongsPage from "./pages/song-page/SongsPage"
 import Drawer from "./components/Drawer";
 import Cookies from "js-cookie";
 
@@ -34,7 +34,7 @@ function Routes() {
         <Route path="/top-actors" component={Actors} /> */}
       
         <Route exact path="/:category" component={Category} />
-        <Route exact path="/songs/:category/:subcategory" component={SongsQueue} />
+        <Route exact path="/songs/:category/:subcategory" component={SongsPage} />
         <PrivateRoute
           path="/user-profile"
           component={UserProfile}

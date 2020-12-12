@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import SongService from '../../service/song-service'
+import PlayerControl from '../../components/PlayerControl/PlayerControl.component'
+import SongsInQueue from '../../components/songs-in-queue/SongsInQueue'
 import './song-page.styles.css'
-class SongsQueue extends Component {
+class SongsPage extends Component {
   constructor(props) {
     super(props);
     
@@ -12,7 +14,7 @@ class SongsQueue extends Component {
     };
   }
   componentDidMount() {
-  if(this.state.category=="artist")
+  if(this.state.category==="artist")
   SongService.getSongsByArtist(this.state.subcategory)
   .then((response)=>{
     this.setState({
@@ -20,21 +22,21 @@ class SongsQueue extends Component {
     },()=>{console.log(this.state.songs)})
   })  ;
 
-  if(this.state.category=="mood")
+  if(this.state.category==="mood")
   SongService.getSongsByMood(this.state.subcategory)
   .then((response)=>{
     this.setState({
       songs:response.data
     },()=>{console.log(this.state.songs)})
   })  ;
-  if(this.state.category=="language")
+  if(this.state.category==="language")
   SongService.getSongsByLanguage(this.state.subcategory)
   .then((response)=>{
     this.setState({
       songs:response.data
     },()=>{console.log(this.state.songs)})
   })  ;
-  if(this.state.category=="albums")
+  if(this.state.category==="albums")
   SongService.getSongsByLanguage(this.state.subcategory)
   .then((response)=>{
     this.setState({
@@ -42,7 +44,7 @@ class SongsQueue extends Component {
     },()=>{console.log(this.state.songs)})
   })  ;
     
-  if(this.state.category=="top-actors")
+  if(this.state.category==="top-actors")
   SongService.getSongsByActor(this.state.subcategory)
   .then((response)=>{
     this.setState({
@@ -55,17 +57,17 @@ class SongsQueue extends Component {
     const {category,subcategory} =this.state
     return (
       <div>
-{/*         
-      <p>
-          Song queue<br/>{category}<br/>{subcategory}
-        </p>
-        <hr/> */}
+
        <div className="song-container">
          <div className="queue">
-         queue
+         <SongsInQueue category={this.state.category} subcategory={this.state.subcategory}/>
          </div>
-         <div className="player"></div>
-         <div className="song-info"></div>
+         <div className="player">
+           <PlayerControl song="https://drive.google.com/file/d/1-YCZbhwvmdjPMtPK_J-7vGD9wm9FdGCg/view?usp=sharing"/>
+         </div>
+         <div className="song-info" >
+           <img className="banner"  src={localStorage.getItem('current-song-banner')} />
+         </div>
          <div className="lyrics-scroll"></div>
          <div className="other-artists"></div>
          <div className="other-moods"></div>
@@ -75,4 +77,4 @@ class SongsQueue extends Component {
   }
 }
 
-export default SongsQueue;
+export default SongsPage;

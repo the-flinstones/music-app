@@ -2,36 +2,27 @@ import React, { Component } from "react";
 import SongService from '../../service/song-service'
 import SwiperNav   from "../../components/swiper/Swiper";
 import Button from '@material-ui/core/Button';
-const styles = theme => ({
-  button: {
-    margin: theme.spacing.unit,
-  },
-  input: {
-    display: 'none',
-  },
-});
+
 class Home extends Component {
   constructor(props){
     super(props);
     this.state={
       categories:[],
-      subcategories:[]
-      
+      subcategories:[]      
     }
-
   }
   componentDidMount() {
     SongService.getCategories()
     .then((response)=>{
       this.setState({
         categories:response.data
-      },()=>{console.log(this.state.categories)})
+      })
     })  ;
     SongService.getSubCategories()
     .then((response)=>{
       this.setState({
         subcategories:response.data
-      },()=>{console.log(this.state.subcategories)})
+      })
     }) 
 
   }

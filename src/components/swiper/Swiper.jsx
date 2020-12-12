@@ -26,7 +26,7 @@ class SwiperNav extends Component{
     .then((response)=>{
       this.setState({
         subCategories:response.data
-      },()=>{console.log(this.state.categories)})
+      })
     })  ;
   
   }

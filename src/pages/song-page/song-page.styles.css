@@ -1,9 +1,16 @@
   .song-container {
     display: grid;
     grid-template-columns: 1fr 2fr 2fr;
-    grid-template-rows: 400px 380px 90px;
+    grid-template-rows: 400px 425px 90px;
     align-content: stretch;
 
+  }
+  .banner{
+    height: 100%;
+    width: 100%;
+    
+
+  
   }
   .queue{
     grid-row-start: 1;
@@ -50,3 +57,4 @@
   .hint{
     place-self: center;
   }
+  
