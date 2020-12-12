@@ -1,3 +1,14 @@
+.queue-header{
+  align-items: center;
+    padding: 3%;
+    background-color: rgb(10, 25, 47);
+    border-bottom: 1px solid rgb(11, 31, 61);
+    background :    rgb(10, 25, 47) ;
+    color:white;
+    font-size: large;
+
+}
+
 .song-tile{
     display: flex;
     flex-direction: row;

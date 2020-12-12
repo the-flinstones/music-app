@@ -54,7 +54,8 @@ class SpacingGrid extends React.Component {
                 <Paper className={classes.paper} style={{backgroundImage:`${subcategory.imageUrl}`}}>
                
             
-            <img className="subcategory-image"  src={`${subcategory.imageUrl}`}   style={{objectFit: "cover", width:  "200px",    height: "200px"}} onClick={()=>this.props.history.push(`/songs/${this.props.categoryId}/${subcategory.subCategoryId}`)}  />
+            <img className="subcategory-image"  src={`${subcategory.imageUrl}`}   style={{objectFit: "cover", width:  "200px",    height: "200px"}}
+             onClick={()=>this.props.history.push(`/songs/${this.props.categoryId}/${subcategory.subCategoryId}`)}  />
             </Paper>
             <div>{subcategory.subCategoryId}</div>
               </Grid>

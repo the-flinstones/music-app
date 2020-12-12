@@ -19,11 +19,21 @@ class PlayerControl extends Component {
 
   render() {
     return (
+  //     <div>
+  //          <AudioPlayer style={{backgroundColor:"black",
+  //          }}
+  //   autoPlay
+  //    src="http://docs.google.com/uc?export=open&id=11BxpikUKuyFw1tKzBICZ7ejAtjggJV3Q" type="audio/mp3"
+  //   onPlay={e => console.log("onPlay")}
+  //   // other props here
+  // />  
+  //   </div>
+ 
       <div>
            <AudioPlayer style={{backgroundColor:"black",
            }}
     autoPlay
-     src="http://docs.google.com/uc?export=open&id=1yyRuQEHp-GmOXF4RW6I9UMSnC3JXvEXS" type="audio/mp3"
+     src={this.props.songUrl} type="audio/mp3"
     onPlay={e => console.log("onPlay")}
     // other props here
   />  

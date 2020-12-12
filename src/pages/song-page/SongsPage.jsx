@@ -10,7 +10,8 @@ class SongsPage extends Component {
     this.state = {
       category: this.props.match.params.category,
       subcategory: this.props.match.params.subcategory,
-     songs:[]
+     songs:[],
+     currentSong:''
     };
   }
   componentDidMount() {
@@ -36,7 +37,7 @@ class SongsPage extends Component {
       songs:response.data
     },()=>{console.log(this.state.songs)})
   })  ;
-  if(this.state.category==="albums")
+  if(this.state.category==="album")
   SongService.getSongsByLanguage(this.state.subcategory)
   .then((response)=>{
     this.setState({
@@ -44,7 +45,7 @@ class SongsPage extends Component {
     },()=>{console.log(this.state.songs)})
   })  ;
     
-  if(this.state.category==="top-actors")
+  if(this.state.category==="actor")
   SongService.getSongsByActor(this.state.subcategory)
   .then((response)=>{
     this.setState({
@@ -53,6 +54,13 @@ class SongsPage extends Component {
   })  ;
     
   }
+
+  handleSongPlay=(song)=>{
+    console.log(song)
+    this.setState({
+      currentSong:song
+    })
+  }
   render() {
     const {category,subcategory} =this.state
     return (
@@ -60,13 +68,13 @@ class SongsPage extends Component {
 
        <div className="song-container">
          <div className="queue">
-         <SongsInQueue category={this.state.category} subcategory={this.state.subcategory}/>
+         <SongsInQueue category={this.state.category} subcategory={this.state.subcategory} handleSongPlay={this.handleSongPlay} currentSong={this.state.currentSong}/>
          </div>
          <div className="player">
-           <PlayerControl song="https://drive.google.com/file/d/1-YCZbhwvmdjPMtPK_J-7vGD9wm9FdGCg/view?usp=sharing"/>
+           <PlayerControl songUrl={this.state.currentSong.songUrl}/>
          </div>
          <div className="song-info" >
-           <img className="banner"  src={localStorage.getItem('current-song-banner')} />
+           <img className="banner"  src={this.state.currentSong.bannerUrl} />
          </div>
          <div className="lyrics-scroll"></div>
          <div className="other-artists"></div>

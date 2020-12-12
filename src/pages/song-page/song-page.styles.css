@@ -8,9 +8,12 @@
   .banner{
     height: 100%;
     width: 100%;
-    
-
   
+  }
+  .icon{
+    align-self: baseline;
+    color: aqua;
+    margin-top: 2%;
   }
   .queue{
     grid-row-start: 1;

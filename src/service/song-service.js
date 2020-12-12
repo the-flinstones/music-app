@@ -17,9 +17,7 @@ class SongService{
   getSongsByLanguage(language) {
     return http.get(`/api/v1/songs/lang/${language}`);
   }
-  getSongsByLanguage(album) {
-    return http.get(`/api/v1/songs/album/${album}`);
-  }
+  
   getSongsByActor(album) {
     return http.get(`/api/v1/songs/actor/${album}`);
   }
