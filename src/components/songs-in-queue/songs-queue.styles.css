@@ -39,3 +39,23 @@
     color: rgb(192, 190, 190);
      
 }
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: outset 0 0 5px  rgb(29, 84, 165) 0%; 
+    border-radius: 5px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(57, 65, 77) 0%;  
+    border-radius: 5px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(17, 43, 80) ;
+  }

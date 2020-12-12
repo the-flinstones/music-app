@@ -20,12 +20,13 @@ class PlayerControl extends Component {
   render() {
     return (
       <div>
-          <AudioPlayer style={{backgroundColor:"black"}}
+           <AudioPlayer style={{backgroundColor:"black",
+           }}
     autoPlay
-     src=" https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3"
+     src="http://docs.google.com/uc?export=open&id=1yyRuQEHp-GmOXF4RW6I9UMSnC3JXvEXS" type="audio/mp3"
     onPlay={e => console.log("onPlay")}
     // other props here
-  />
+  />  
     </div>
     );
   }

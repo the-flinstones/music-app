@@ -18,6 +18,7 @@ class SongsInQueue extends Component {
     
       }
       componentDidMount() {
+        console.log(this.state.subcategory)
         if(this.state.category==="artist")
         SongService.getSongsByArtist(this.state.subcategory)
         .then((response)=>{
