@@ -80,14 +80,15 @@ class SongsPage extends Component {
          </div>
          <div className="song-info" >
            <img className="banner"  src={this.state.currentSong.bannerUrl} />
+           <div className="lyrics-scroll">  {this.state.currentSong.title ?<div style={{paddingLeft:"2%",color: "rgba(142, 232, 255, 0.452)",fontFamily:" Rock Salt, cursive"}}><h2>{this.state.currentSong.title.toUpperCase()}</h2></div>:""}<div className="lyrics">{this.state.lyrics}</div></div>
          </div>
        
-         <div className="lyrics-scroll">  {this.state.currentSong.title ?<div><h2>{this.state.currentSong.title.toUpperCase()}</h2></div>:""}<span className="lyrics">{this.state.lyrics}</span></div>
-         {/* <div className="other-subcategories"> */}
-           {/* {this.state.category? <SpacingGrid subcategories={this.state.subcategory} categoryId={this.state.category}/>:""} */}
+         {/* <div className="lyrics-scroll">  {this.state.currentSong.title ?<div><h2>{this.state.currentSong.title.toUpperCase()}</h2></div>:""}<span className="lyrics">{this.state.lyrics}</span></div> */}
+         <div className="other-subcategories"> </div>
+           
            
           
-         {/* </div> */}
+         
          
        </div>
       </div>
