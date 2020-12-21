@@ -66,7 +66,7 @@ class SongsInQueue extends Component {
   render() {
        
     return (
-      <div className="songs-list" style={{backgroundColor:"black",marginTop:"3%",height:"100%",overflow:"hidden", overflowY:"scroll"}}>
+      <div className="songs-list" style={{marginTop:"3%",height:"100%",overflow:"hidden", overflowY:"scroll"}}>
         <div  className="queue-header"> <span style={{color:"aqua",height:"40px"}}><QueueMusicRoundedIcon/></span>&nbsp;&nbsp;Playlist</div>
              {
               this.state.songs.map(song=>(
