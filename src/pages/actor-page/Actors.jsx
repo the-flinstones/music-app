@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class Artists extends Component {
+class Actors extends Component {
   render() {
     return (
       <div>
@@ -12,7 +12,7 @@ class Artists extends Component {
             webkitTextFillColor: "transparent",
           }}
         >
-          Artists Page
+          Actors Page{this.props.match.params}
         </h1>
         <br /> <br />
       </div>
@@ -20,4 +20,4 @@ class Artists extends Component {
   }
 }
 
-export default Artists;
+export default Actors;

@@ -1,0 +1,123 @@
+  .song-container {
+   
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr;
+    grid-template-rows: 700px 125px 90px;
+    align-content: stretch;
+
+  }
+  .banner{
+    height: 100%;
+    width: 100%;
+  
+  }
+  .icon{
+    align-self: baseline;
+    color: aqua;
+    margin-top: 2%;
+  }
+  .queue{
+    grid-row-start: 1;
+    grid-row-end:3 ;
+    grid-column-start: 1;
+    grid-column-end:2 ;
+    background-color: rgb(10, 25, 47);;
+  }
+  .song-info{
+    grid-row-start: 1;
+    grid-row-end:3 ;
+    grid-column-start: 2;
+    grid-column-end:4 ;
+    background-color: rgb(0, 73, 107);
+    border:0px;
+    position:relative
+  }
+  .lyrics{
+   
+    margin-left: 2%;
+    color: rgba(142, 232, 255, 0.452);
+    /* padding-left: 10%; */
+    font-family: 'Rock Salt', cursive;
+    font-weight: 700;
+    
+    width: 35%;
+  }
+  .lyrics-scroll{
+    position: absolute;
+ 
+  top: 0;
+  right: 0;
+    padding-top: 0%;
+    padding-right: 8%;
+    height: 100%;
+    width: 92%;
+    
+   
+    border: 0px;
+   
+    overflow-y: scroll;
+    white-space: pre-wrap;
+    text-align: left;
+     /* grid-row-start: 1;
+    grid-row-end:3 ;
+    grid-column-start: 3;
+    grid-column-end:4 ; */
+    /* background-color:black; */
+    /* border: 1px solid; */
+    /* padding: 10px; */
+    /* box-shadow: -19px -21px 20px 20px rgba(0, 0, 0, 0.986); */
+    /* box-shadow:-20px 20px 20px 20px rgba(0, 0, 0, 0.137); */
+    border-left: none;
+    /* background-image: linear-gradient(to left, rgba(19, 9, 9, 0.123), black); */
+    background-image: linear-gradient(to left,rgb(0, 0, 0), rgba(19, 9, 9, 0.027), black);
+        
+  }
+  .lyrics-scroll::-webkit-scrollbar {
+    display: none;
+}
+  /* .lyrics-scroll {
+    
+    padding-top: 50%;
+    padding-right: 10%;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    background-color: black;
+    border: 0px;
+    overflow-y: scroll;
+    white-space: pre-wrap;
+    text-align: right;
+    border: none;
+    padding: 10px;
+    box-shadow: -19px -11px 20px 20px black;
+  } */
+
+  /* .lyrics-scroll::-webkit-scrollbar {
+    display: none;
+} */
+  .other-subcategories{
+    grid-row-start: 2;
+    grid-row-end:3 ;
+    grid-column-start: 2;
+    grid-column-end:4 ;
+    background-color: rgb(0, 73, 107);
+  }
+  /* .other-moods{
+    grid-row-start: 2;
+    grid-row-end:3 ;
+    grid-column-start: 3;
+    grid-column-end:4 ;
+    background-color: rgb(0, 86, 143);
+  } */
+  .player{
+    grid-row-start: 3;
+    grid-row-end:4 ;
+    grid-column-start: 1;
+    grid-column-end:4 ;
+    background-color: rgb(1, 53, 53);
+  }
+  .hint{
+    place-self: center;
+  }
+  

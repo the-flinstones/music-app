@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect,Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { GoogleLogin } from "react-google-login";
 import Cookies from "js-cookie";
@@ -38,6 +38,7 @@ const useStyles = (theme) => ({
   },
   roots: {
     flexGrow: 1,
+    marginBottom:"53px"
   },
   tab: {
     marginLeft: theme.spacing(3),
@@ -267,16 +268,19 @@ class Navbar extends React.Component {
           style={{ marginTop: 0, backgroundColor: "#0a192f" }}
         >
           <Toolbar>
+            <Link to="/" className="home-link" style={{maxWidth:"100px"}}>
             <img
               src={logo}
               alt="logo"
               style={{
-                width: "4%",
-                height: "4%",
+                width: "40%",
+                height: "40%",
                 marginTop: 5,
                 marginBottom: 5,
               }}
+             
             />
+            </Link>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
@@ -324,9 +328,9 @@ class Navbar extends React.Component {
           </Toolbar>
         </AppBar>
         {value === 0 && <Redirect to="/" />}
-        {value === 1 && <Redirect to="/genres" />}
+        {value === 1 && <Redirect to="/mood" />}
         {value === 2 && <Redirect to="/albums" />}
-        {value === 3 && <Redirect to="/artists" />}
+        {value === 3 && <Redirect to="/artist" />}
         {value === 4 && <Redirect to="/user-profile" />}
 
         {/* Error Message */}

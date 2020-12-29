@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class Home extends Component {
+class Artists extends Component {
   render() {
     return (
       <div>
@@ -12,7 +12,8 @@ class Home extends Component {
             webkitTextFillColor: "transparent",
           }}
         >
-          Home Page
+          Artists Page
+          {console.log(this.props)}
         </h1>
         <br /> <br />
       </div>
@@ -20,4 +21,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default Artists;
