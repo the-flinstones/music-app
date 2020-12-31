@@ -38,7 +38,6 @@ const useStyles = (theme) => ({
   },
   roots: {
     flexGrow: 1,
-    marginBottom:"53px"
   },
   tab: {
     marginLeft: theme.spacing(3),
@@ -56,12 +55,12 @@ const useStyles = (theme) => ({
     marginLeft: 0,
     width: "100%",
     [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(6),
+      marginLeft: theme.spacing(1),
       width: "auto",
     },
   },
   searchIcon: {
-    padding: theme.spacing(0, 2),
+    padding: theme.spacing(0, 1),
     height: "100%",
     position: "absolute",
     pointerEvents: "none",
@@ -76,7 +75,7 @@ const useStyles = (theme) => ({
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    paddingLeft: `calc(1em + ${theme.spacing(3)}px)`,
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("sm")]: {
@@ -104,6 +103,7 @@ const useStyles = (theme) => ({
     border: 0,
     color: "white",
     width: "10%",
+    letterSpacing: '0.15em',
     boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
     "&:hover": {
       background: "linear-gradient(45deg, #FE3762 30%, #FF742B 90%)",
@@ -141,6 +141,9 @@ const useStyles = (theme) => ({
     width: "85%",
     marginBottom: "5%",
   },
+  text: {
+    letterSpacing: '0.15em',
+  }
 });
 
 function Transition(props) {
@@ -221,7 +224,7 @@ class Navbar extends React.Component {
 
     var config = {
       method: "post",
-      url: "http://localhost:8080/music-auth/google-auth",
+      url: "http://localhost:8081/music-auth/google-auth",
       headers: {
         Authorization: "Bearer " + idToken,
       },
@@ -256,6 +259,12 @@ class Navbar extends React.Component {
     const idToken = res.tokenId;
   };
 
+  handleMyLogin = () => {
+    Cookies.set("name", "User");
+    Cookies.set("role", "BASIC_USER");
+    Cookies.set("auth", true);
+  }
+
   render() {
     const auth = Cookies.get("auth");
     const { classes } = this.props;
@@ -265,7 +274,8 @@ class Navbar extends React.Component {
       <div className={classes.roots}>
         <AppBar
           position="fixed"
-          style={{ marginTop: 0, backgroundColor: "#0a192f" }}
+          style={{ marginTop: 0, backgroundColor: "#0a192f",     width: '100%',
+          height: '10%' }}
         >
           <Toolbar>
             <Link to="/" className="home-link" style={{maxWidth:"100px"}}>
@@ -277,6 +287,7 @@ class Navbar extends React.Component {
                 height: "40%",
                 marginTop: 5,
                 marginBottom: 5,
+                animation: "App-logo-spin infinite 10s linear",
               }}
              
             />
@@ -299,11 +310,11 @@ class Navbar extends React.Component {
               value={value}
               onChange={this.handleValueChange}
             >
-              <Tab label="Home" />
-              <Tab label="Genres" />
-              <Tab label="Albums" />
-              <Tab label="Artists" />
-              <Tab label="My Account" style={display(auth)} />
+              <Tab label="Home" className={classes.text}/>
+              <Tab label="Genres" className={classes.text}/>
+              <Tab label="Albums" className={classes.text}/>
+              <Tab label="Artists" className={classes.text}/>
+              <Tab label="My Account" className={classes.text} style={display(auth)} />
             </Tabs>
             <Button
               className={this.props.classes.loginBtn}
@@ -436,6 +447,7 @@ class Navbar extends React.Component {
                       <Button
                         type="submit"
                         className={this.props.classes.myBtn}
+                        onClick={this.handleMyLogin}
                       >
                         Sign In
                       </Button>

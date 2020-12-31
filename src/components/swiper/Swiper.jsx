@@ -16,8 +16,7 @@ class SwiperNav extends Component{
   constructor(props){
     super(props);
     this.state={
-      subCategories:[]
-      
+      subCategories:[],    
     }
 
   }
@@ -27,22 +26,26 @@ class SwiperNav extends Component{
       this.setState({
         subCategories:response.data
       })
-    })  ;
-  
+    });
   }
+  
   
   render(){
     return (
       <div style={{maxWidth:"100%"}}>
                 <Swiper
+                
               spaceBetween={1}
               slidesPerView={8}
               onSlideChange={() => console.log('slide change')}
-              onSwiper={(swiper) => console.log(swiper)}
+              onSwiper={(swiper) =>
+                console.log(swiper)}
               navigation
-            >{
+            >
+              {
               this.state.subCategories.map(subcategory=>
-              <SwiperSlide >
+              <SwiperSlide 
+              >
                 {/* <div style={{backgroundColor:"white"}}> */}
                 <div className="container" onClick={()=>this.props.history.push(`/songs/${this.props.categoryId}/${subcategory.subCategoryId}`)}>
                 <img className="label-image"  src={`${subcategory.imageUrl}`}     />
@@ -53,12 +56,9 @@ class SwiperNav extends Component{
               {/* </div> */}
               </SwiperSlide>
               )
-            }
-             
-          
-            
+            }            
             </Swiper>
-           
+
   
           </div>
     );
