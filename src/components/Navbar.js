@@ -206,6 +206,8 @@ class Navbar extends React.Component {
     Cookies.remove("auth");
     Cookies.remove("name");
     Cookies.remove("role");
+    Cookies.remove("userId");
+    Cookies.remove("email")
     window.location.reload();
   };
 
@@ -239,6 +241,7 @@ class Navbar extends React.Component {
         Cookies.set("name", this.state.user_name);
         Cookies.set("role", this.state.user_role);
         Cookies.set("auth", true);
+        Cookies.set("email", response.data.email)
         window.location.reload();
         console.log(JSON.stringify(response.data));
       })

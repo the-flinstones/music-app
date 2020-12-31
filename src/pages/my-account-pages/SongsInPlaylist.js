@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import ClippedDrawer from './ClippedDrawer'
 import MyAccountSerivces from '../../service/MyAccountSerivces'
+import Cookies from 'js-cookie'
 
 const useStyles = (theme) => ({
     root: {
@@ -39,8 +40,8 @@ const useStyles = (theme) => ({
     constructor(props) {
         super(props);
         this.state = {
-        userId: "d677b5a9-4f73-4ed5-b6a4-de2400303985",
-        playlistId: "e605a820-f6aa-4990-ab95-fdac688c1a3b",
+        userId: Cookies.get("userId"),
+        playlistId: "e605a820-f6aa-5678-ab95-fdac688c1a3b",
         user: [{}],
         };
       }
@@ -69,6 +70,10 @@ const useStyles = (theme) => ({
           >
             Library
           </h1>
+          <div>
+          {this.state.user.map((item) => (
+          <h1>{item.songId}</h1>
+           ))} </div>
           <ClippedDrawer />
           </div>
           )
