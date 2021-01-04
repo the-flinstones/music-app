@@ -10,6 +10,8 @@ import {
   Container,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import MyAccountSerivces from '../../service/MyAccountSerivces'
+import Cookies from "js-cookie";
 
 const useStyles = (theme) => ({
   root: {
@@ -44,6 +46,22 @@ const useStyles = (theme) => ({
 });
 
 class MyPlaylists extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    userId: Cookies.get("userId"),
+    playlists: []
+    };
+  }
+  componentDidMount() {
+    MyAccountSerivces.getPlaylistsById(this.state.userId).then(
+        (response) => {
+      this.setState({
+        playlists: response.data,
+      });
+      console.log(this.state.playlists);
+    });
+  }
   render() {
     const { classes } = this.props;
     return (
@@ -61,52 +79,22 @@ class MyPlaylists extends Component {
         </h1>
 
         <Container>
+          {this.state.playlists.map((item) => (
+          
           <Row className={classes.row}>
             <Col md={3}>
             <Link to="/playlist-songs" style={{textDecoration: 'none'}}>
               <Card className={classes.card}>
                 <CardBody>
                   <CardTitle>
-                    <h3>Blue & Gold</h3>
-                  </CardTitle>
-                </CardBody>
-              </Card>
-              </Link>
-            </Col>
-            <Col md={3}>
-            <Link to="/playlist-songs" style={{textDecoration: 'none'}}>
-              <Card className={classes.card}>
-                <CardBody>
-                  <CardTitle>
-                    <h3>Soft Jazz</h3>
-                  </CardTitle>
-                </CardBody>
-              </Card>
-              </Link>
-            </Col>
-            <Col md={3}>
-            <Link to="/playlist-songs" style={{textDecoration: 'none'}}>
-              <Card className={classes.card}>
-                <CardBody>
-                  <CardTitle>
-                    <h3>Roadtrip</h3>
-                  </CardTitle>
-                </CardBody>
-              </Card>
-              </Link>
-            </Col>
-            <Col md={3}>
-            <Link to="/playlist-songs" style={{textDecoration: 'none'}}>
-              <Card className={classes.card}>
-                <CardBody>
-                  <CardTitle>
-                    <h3>Workout</h3>
+                    <h3>{item.title}</h3>
                   </CardTitle>
                 </CardBody>
               </Card>
               </Link>
             </Col>
           </Row>
+          ))}
         </Container>
 
         <ClippedDrawer />

@@ -1,25 +1,31 @@
 import http from "../http-common";
+import axios from 'axios'
 
+const API_URL = 'http://localhost:8081/music-auth'
 
 class MyAccountSerivces{
   
  getPlaylists() {
     return http.get(`/api/v1/playlists`);
   }
-  getAccountDetailsById(userId) {
-    return http.get(`/api/v1/user/${userId}`);
+  getAccountDetailsByEmail(email) {
+    return axios.get(`${API_URL}/user-email/${email}`);
   }
   getAccountDetails() {
-    return http.get(`/api/v1/users`);
+    return axios.get(`${API_URL}/users`);
   }
-  editAccountDetailsById(userId, user) {
-    return http.put(`/api/v1/user/${userId}`, user);
+  editAccountDetailsById(email, user) {
+    return axios.put(`${API_URL}/user/${email}`, user);
   }
   getAllSongsByPlaylistIdUserId(userId, playlistId) {
-    return http.get(`/api/v1/playlist-songs/${userId}/${playlistId}`);
+    return http.get(`/api/v1/playlist-songs/${userId}/{playlistId}?playlistId=${playlistId}`);
   }
-  deleteAccountDetails(userId) {
-    return http.delete(`/api/v1/user/${userId}`);
+  deleteAccountDetails(email) {
+    return axios.delete(`${API_URL}/user/${email}`);
+  }
+
+  getPlaylistsById(userId) {
+    return http.get(`/api/v1/playlist/${userId}`);
   }
 }
 export default new MyAccountSerivces();

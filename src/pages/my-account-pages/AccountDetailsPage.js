@@ -187,9 +187,9 @@ class AccountDetailsPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
+      email: Cookies.get("email"),
       username: "",
-      userId: "d677b5a9-4f73-4ed5-b6a4-de2400303985",
+      userId: "",
       dob: "",
       country: "",
       type: "",
@@ -204,15 +204,16 @@ class AccountDetailsPage extends Component {
       });
     });
 
-    MyAccountSerivces.getAccountDetailsById(this.state.userId).then(
+    MyAccountSerivces.getAccountDetailsByEmail(this.state.email).then(
       (response) => {
         this.setState({
+          userId: response.data.id,
           username: response.data.username,
-          email: response.data.useremail,
           dob: response.data.dob,
           country: response.data.country,
           type: response.data.type,
         });
+        Cookies.set("userId", this.state.userId);
       }
     );
   }
@@ -227,7 +228,7 @@ class AccountDetailsPage extends Component {
     };
     console.log(user);
 
-    MyAccountSerivces.editAccountDetailsById(this.state.userId, user).then(
+    MyAccountSerivces.editAccountDetailsById(this.state.email, user).then(
       (response) => {
         this.setState({
           open_edit: false,
@@ -239,7 +240,7 @@ class AccountDetailsPage extends Component {
 
   handleDelete = () => {
 
-    MyAccountSerivces.deleteAccountDetails(this.state.userId).then(
+    MyAccountSerivces.deleteAccountDetails(this.state.email).then(
       (response) => {
         this.setState({ open_delete: false });
         console.log(response);
@@ -264,7 +265,7 @@ window.location.reload();
     const { classes } = this.props;
     const formattedDate = moment(this.state.dob).format("LL");
     const dateOfBirth = moment(this.state.dob).format("YYYY-MM-DD");
-    const subType = "";
+    var subType = "";
     if (this.state.type === "PREMIUM_USER") {
       this.subType = "Premium Plan";
     } else {
@@ -358,7 +359,8 @@ window.location.reload();
             </h3>
             <div className={classes.headBox}>
               <div className={classes.planHeader}>
-                <span>{this.state.type.replace(/_/g, " ")}</span>
+                {this.state.type}
+                {/* <span>{this.state.type.replace(/_/g, " ")}</span> */}
               </div>
             </div>
             <div className={classes.subHeadBox}>
