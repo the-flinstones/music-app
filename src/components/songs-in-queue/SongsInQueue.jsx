@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import './songs-queue.styles.css'
 import MusicNoteRoundedIcon from '@material-ui/icons/MusicNoteRounded'; 
+import FavouriteBorderIcon from '@material-ui/icons/FavoriteBorder'
+import FavouriteIcon from '@material-ui/icons/Favorite'
 import equalizer from  '../../assets/equalizer_accent.gif'
 
 
 
 import SongService from '../../service/song-service'
 import QueueMusicRoundedIcon from '@material-ui/icons/QueueMusicRounded';
+import { SpaOutlined } from "@material-ui/icons";
 class SongsInQueue extends Component {
     constructor(props){
         super(props);
@@ -15,7 +18,11 @@ class SongsInQueue extends Component {
             selectedSelected:'',
             category:this.props.category,
             subcategory:this.props.subcategory,
-            currentSong:''            
+            currentSong:'' ,
+            liked:false,
+            likedSongsList:[]
+          
+                     
 
         }
     
@@ -61,7 +68,12 @@ class SongsInQueue extends Component {
         })  ;
           
         }
-    
+        handleSongLiked = (song) => {
+
+        this.state.likedSongsList.push(song)
+        this.setState({liked:!this.state.liked})
+        console.log(this.state.likedSongsList)
+          }
 
   render() {
        
@@ -78,9 +90,13 @@ class SongsInQueue extends Component {
                   {this.props.currentSong.id==song.id ? <img className="icon" src={equalizer} style={{height:"20px",width:"20px"}}/>:<MusicNoteRoundedIcon  className="icon" />}
                     <img className="thumbnail-pic" src={song.thumbnailUrl}/>
                     <div className="details">
-                <div className="song-title">{song.title}</div>
-                <div className="song-artist">{song.artist}</div>
-                </div>
+                  <span className="song-title">{song.title}</span>
+                  <span className="song-artist">{song.artist}</span>
+                 
+                  </div>
+                  
+                
+                
                 </div>
               )
             )

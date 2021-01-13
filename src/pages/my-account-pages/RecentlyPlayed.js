@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import ClippedDrawer from './ClippedDrawer';
+import NestedGrid from '../../components/nestedgrid/NestedGrid'
 
 class RecentlyPlayed extends Component {
     render() {
         return (
-            <div>
+            <div className="listing-space">
         <h1
           style={{
-            marginLeft: '26%',
+            marginLeft: '6%',
             marginTop: "7%",
             fontSize: "45px",
             fontWeight: 700,
@@ -19,6 +20,7 @@ class RecentlyPlayed extends Component {
           Recently Played
         </h1>
         <ClippedDrawer />
+        <NestedGrid recentlyPlayed={localStorage.getItem("recent")} />
       </div>
 
         )

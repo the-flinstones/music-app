@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import ClippedDrawer from './ClippedDrawer';
-import NestedGridLiked from '../../components/nestedgrid/NestedGridLiked'
-import SongService from '../../service/song-service'
-import Cookies from "js-cookie";
+import NestedGrid from '../../components/nestedgrid/NestedGrid'
+import songService from '../../../service/song-service';
 
-class LikedSongsPage extends Component {
+class UserLikedSongs extends Component {
     constructor(props) {
         super(props);
         
@@ -17,7 +16,7 @@ class LikedSongsPage extends Component {
      SongService.getLikedByUserId(Cookies.get("userId"))
        .then((response)=>{
           this.setState({
-            songs:response.data.likedSongs
+            songs:response.data
           })
         }) 
     } 
@@ -38,11 +37,11 @@ class LikedSongsPage extends Component {
           Liked 
         </h1>
         <ClippedDrawer />
-        <NestedGridLiked liked={this.state.songs} />
+        <NestedGrid recentlyPlayed={this.state.songs} />
       </div>
 
         )
     }
     
 }
-export default LikedSongsPage;
+export default UserLikedSongs;

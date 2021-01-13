@@ -23,10 +23,19 @@
     
     background :  linear-gradient(to bottom right,  rgb(10, 25, 47) 0%,   rgb(10, 36, 78) 100%);;
 }
+
 .details{
     display: flex;
     flex-direction: column;
-    min-width: 100%;
+    min-width: 50%;
+}
+.options{
+  display: flex;
+  flex-direction: column;
+  min-width: 20%;
+  align-self: center;
+  color: rgb(255, 8, 90);
+
 }
 .song-title{
     margin-left: 5%;

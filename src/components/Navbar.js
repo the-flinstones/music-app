@@ -3,7 +3,8 @@ import { Redirect,Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { GoogleLogin } from "react-google-login";
 import Cookies from "js-cookie";
-
+import MyAccountSerivces from "../service/MyAccountSerivces";
+import SongService from "../service/song-service"
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -203,12 +204,17 @@ class Navbar extends React.Component {
       isLoggedIn: false,
       isSignedIn: false,
     });
+   SongService.postRecentsByUserId(Cookies.get("userId"),localStorage.getItem("recents"))
+   .then((res)=>{
+     console.log(res)
+   })
     Cookies.remove("auth");
     Cookies.remove("name");
     Cookies.remove("role");
     Cookies.remove("userId");
     Cookies.remove("email")
-    window.location.reload();
+    
+    // window.location.reload();
   };
 
   handleValueChange = (event, value) => {
@@ -237,22 +243,42 @@ class Navbar extends React.Component {
           isLoggedIn: true,
           user_name: response.data.name,
           user_role: response.data.role,
+          email:response.data.email
         }));
         Cookies.set("name", this.state.user_name);
         Cookies.set("role", this.state.user_role);
         Cookies.set("auth", true);
         Cookies.set("email", response.data.email)
-        window.location.reload();
+        // window.location.reload();
         console.log(JSON.stringify(response.data));
       })
-
+      .then(()=>{
+        MyAccountSerivces.getAccountDetailsByEmail(Cookies.get("email")).then(
+          (response) => {
+            Cookies.set("userId", response.data.id);
+             window.location.reload();
+            this.handelFetchRecents()
+          }
+        );
+      }      
+      )
       .catch(
         function (error) {
           console.log(error);
           this.handleInvalid();
         }.bind(this)
-      );
+      );  
+   
   };
+  handelFetchRecents = () =>{
+    console.log("ggggggggggggggggggggggggggggggggggggggggggggggggggggg")
+   SongService.getRecentsByUserId(Cookies.get("userId"))
+   .then((recents)=>{
+    localStorage.setItem("recents", JSON.stringify(recents.data.recentlyPlayedSongs));
+   }
+   )
+
+  } 
 
   handleInvalid = () => {
     this.setState({ open: true });
