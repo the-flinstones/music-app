@@ -19,7 +19,7 @@
 .accounts-details{
     display: flex;
     flex-direction: column;
-    min-width: 50%;
+    min-width: 40%;
 }
 .accounts-options{
   display: flex;

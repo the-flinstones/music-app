@@ -8,7 +8,7 @@ class RecentlyPlayed extends Component {
             <div className="listing-space">
         <h1
           style={{
-            marginLeft: '6%',
+            marginLeft: '25%',
             marginTop: "7%",
             fontSize: "45px",
             fontWeight: 700,
@@ -20,7 +20,9 @@ class RecentlyPlayed extends Component {
           Recently Played
         </h1>
         <ClippedDrawer />
+        <div style={{marginLeft: '25%'}}>
         <NestedGrid recentlyPlayed={localStorage.getItem("recent")} />
+        </div>
       </div>
 
         )

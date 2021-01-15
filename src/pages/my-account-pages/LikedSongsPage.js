@@ -1,32 +1,30 @@
-import React, { Component } from 'react'
-import ClippedDrawer from './ClippedDrawer';
-import NestedGridLiked from '../../components/nestedgrid/NestedGridLiked'
-import SongService from '../../service/song-service'
+import React, { Component } from "react";
+import ClippedDrawer from "./ClippedDrawer";
+import NestedGridLiked from "../../components/nestedgrid/NestedGridLiked";
+import SongService from "../../service/song-service";
 import Cookies from "js-cookie";
 
 class LikedSongsPage extends Component {
-    constructor(props) {
-        super(props);
-        
-        this.state = {
-          songs:[]
-    
-        };
-      }
-    componentDidMount() {
-     SongService.getLikedByUserId(Cookies.get("userId"))
-       .then((response)=>{
-          this.setState({
-            songs:response.data.likedSongs
-          })
-        }) 
-    } 
-    render() {
-        return (
-            <div className="listing-space">
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      songs: [],
+    };
+  }
+  componentDidMount() {
+    SongService.getLikedByUserId(Cookies.get("userId")).then((response) => {
+      this.setState({
+        songs: response.data.likedSongs,
+      });
+    });
+  }
+  render() {
+    return (
+      <div className="listing-space">
         <h1
           style={{
-            marginLeft: '6%',
+            marginLeft: "25%",
             marginTop: "7%",
             fontSize: "45px",
             fontWeight: 700,
@@ -35,14 +33,14 @@ class LikedSongsPage extends Component {
             webkitTextFillColor: "transparent",
           }}
         >
-          Liked 
+          Liked
         </h1>
         <ClippedDrawer />
-        <NestedGridLiked liked={this.state.songs} />
+        <div style={{ marginLeft: "25%" }}>
+          <NestedGridLiked liked={this.state.songs} />
+        </div>
       </div>
-
-        )
-    }
-    
+    );
+  }
 }
 export default LikedSongsPage;

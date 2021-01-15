@@ -19,7 +19,6 @@ import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import MomentUtils from "@date-io/moment";
 import Cookies from "js-cookie";
 
-
 const theme = createMuiTheme({
   overrides: {
     MuiOutlinedInput: {
@@ -194,7 +193,7 @@ class AccountDetailsPage extends Component {
       country: "",
       type: "",
       open_edit: false,
-      open_delete: false
+      open_delete: false,
     };
   }
   componentDidMount() {
@@ -213,7 +212,7 @@ class AccountDetailsPage extends Component {
           country: response.data.country,
           type: response.data.type,
         });
-        Cookies.set("userId", this.state.userId);
+        Cookies.set("userId", response.data.id);
       }
     );
   }
@@ -239,17 +238,16 @@ class AccountDetailsPage extends Component {
   };
 
   handleDelete = () => {
-
     MyAccountSerivces.deleteAccountDetails(this.state.email).then(
       (response) => {
         this.setState({ open_delete: false });
         console.log(response);
       }
     );
-              Cookies.remove("auth");
-Cookies.remove("name");
-Cookies.remove("role");
-window.location.reload();
+    Cookies.remove("auth");
+    Cookies.remove("name");
+    Cookies.remove("role");
+    window.location.reload();
   };
 
   handleClose = () => {
@@ -324,27 +322,27 @@ window.location.reload();
             </tbody>
           </table>
           <span>
-          <Button
-            className={classes.outlinedBtn}
-            onClick={() =>
-              this.setState({
-                open_edit: true,
-              })
-            }
-          >
-            Edit
-          </Button>
-          <Button
-            className={classes.outlinedBtn}
-            style={{marginLeft: '45%'}}
-            onClick={() =>
-              this.setState({
-                open_delete: true,
-              })
-            }
-          >
-            Delete
-          </Button>
+            <Button
+              className={classes.outlinedBtn}
+              onClick={() =>
+                this.setState({
+                  open_edit: true,
+                })
+              }
+            >
+              Edit
+            </Button>
+            <Button
+              className={classes.outlinedBtn}
+              style={{ marginLeft: "45%" }}
+              onClick={() =>
+                this.setState({
+                  open_delete: true,
+                })
+              }
+            >
+              Delete
+            </Button>
           </span>
           <div>
             <h3
@@ -359,8 +357,7 @@ window.location.reload();
             </h3>
             <div className={classes.headBox}>
               <div className={classes.planHeader}>
-                {this.state.type}
-                {/* <span>{this.state.type.replace(/_/g, " ")}</span> */}
+                <span>{this.state.type.replace(/_/g, " ")}</span>
               </div>
             </div>
             <div className={classes.subHeadBox}>
@@ -490,46 +487,47 @@ window.location.reload();
             aria-labelledby="alert-dialog-slide-title"
             aria-describedby="alert-dialog-slide-description"
           >
-            
             <DialogContent
               style={{ backgroundColor: "#0a192f", color: "white" }}
             >
-              <DialogTitle className={classes.title}
-                    style={{
-                      background:
-                        "linear-gradient(45deg, #FE3762 30%, #FF742B 90%)",
-                      webkitBackgroundClip: "text",
-                      webkitTextFillColor: "transparent",
-                    }}>
-                      <h3>Do you want to delete you account?</h3></DialogTitle>
-                <center>
-                   <div style={{color: '#ccd6f6'}}>Your account will be deleted permanantly. You will not be able to undo this action.
-                   </div> 
-
-                </center>
-                
-
-            <DialogActions>
-              <Button
-                onClick={() => {
-                    this.handleDelete()
+              <DialogTitle
+                className={classes.title}
+                style={{
+                  background:
+                    "linear-gradient(45deg, #FE3762 30%, #FF742B 90%)",
+                  webkitBackgroundClip: "text",
+                  webkitTextFillColor: "transparent",
                 }}
-                className={classes.containedBtn}
               >
-                Yes
-              </Button>
-              <Button
-                onClick={() => {
-                  this.setState({ open_delete: false });
-                }}
-                className={classes.outlinedBtn}
-              >
-                No
-              </Button>
-            
-</DialogActions>
-</DialogContent>
-</Dialog>
+                <h3>Do you want to delete you account?</h3>
+              </DialogTitle>
+              <center>
+                <div style={{ color: "#ccd6f6" }}>
+                  Your account will be deleted permanantly. You will not be able
+                  to undo this action.
+                </div>
+              </center>
+
+              <DialogActions>
+                <Button
+                  onClick={() => {
+                    this.handleDelete();
+                  }}
+                  className={classes.containedBtn}
+                >
+                  Yes
+                </Button>
+                <Button
+                  onClick={() => {
+                    this.setState({ open_delete: false });
+                  }}
+                  className={classes.outlinedBtn}
+                >
+                  No
+                </Button>
+              </DialogActions>
+            </DialogContent>
+          </Dialog>
         </div>
         <ClippedDrawer />
       </div>

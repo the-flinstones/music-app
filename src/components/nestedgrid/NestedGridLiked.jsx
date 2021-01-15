@@ -12,6 +12,8 @@ const styles = theme => ({
   },
   paper: {
     // padding: theme.spacing.unit,
+    // marginLeft: '50%',
+    // width: '70%',
     textAlign: 'center',
     color: theme.palette.text.secondary,
     background : "rgb(57, 65, 77) ",
