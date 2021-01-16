@@ -16,12 +16,13 @@ class SongService{
   }
   getSongsByLanguage(language) {
     return http.get(`/api/v1/songs/lang/${language}`);
-  }
-  
+  }  
   getSongsByActor(album) {
     return http.get(`/api/v1/songs/actor/${album}`);
+  } 
+  getSongById(id) {
+    return http.get(`/api/v1/songs/${id}`);
   }
-  
   getRecentsByUserId(userId){
     return http.get(`/api/v1/user/recent/${userId}`);
   }
@@ -37,11 +38,8 @@ class SongService{
   postLikedByUserId(userId,liked){
     return http.post(`/user/liked/liked/${userId}`,liked);
   }
-
   addLikedByUserId(userId,song){
     return http.post(`/user/liked/song/${userId}`,song);
   }
-  
-
 }
 export default new SongService();

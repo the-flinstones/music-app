@@ -33,11 +33,14 @@ class Home extends Component {
     
     return (
       <div >
-        <div className="page-header">
+        <div >
         <h1
-        className="page-header"
+        
           style={{
             marginTop: "8%",
+            fontSize: "45px",
+            fontWeight: 700,
+            marginLeft: "8%",
             background: "linear-gradient(45deg, #FE3762 30%, #FF742B 90%)",
             webkitBackgroundClip: "text",
             webkitTextFillColor: "transparent",
@@ -46,14 +49,14 @@ class Home extends Component {
           Home Page
         </h1>
         </div>
-            <div className="directory" style={{margin:"2%",padding:"2%"}}> 
+            <div className="directory" style={{margin:"2%", padding:"2%"}}> 
           <div>
             {
               this.state.categories.map(category=>
                <div className="category">
                  <div className="category-header"  style={{display:"flex",justifyContent:"space-between"}}>
-              <span className="title"><h2>{category.categoryId.toUpperCase()}</h2> </span>
-              <Button style={{color:"white"}} onClick={()=>this.props.history.push(`${category.categoryId}`)}> View all</Button>
+              <span className="title" style={{marginLeft: "5%"}}><h2 >{category.categoryId.toUpperCase()}</h2> </span>
+              <Button style={{color:"white", marginRight: "5%"}} onClick={()=>this.props.history.push(`${category.categoryId}`)}> View all</Button>
       </div>
               <SwiperNav categoryId={category.categoryId}/>
             </div>)

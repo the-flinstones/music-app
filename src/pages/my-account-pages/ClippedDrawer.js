@@ -133,35 +133,12 @@ class ClippedDrawer extends Component {
                   marginBottom: "7%",
                 }}
               />
-              {/* <Link
-            className={classes.premiumBtn}
-             to="/premium">
-            PREMIUM</Link> */}
               <Link to="/premium" className={classes.link}>
                 <ListItem button>
                   <Button className={classes.premiumBtn}>PREMIUM </Button>
                 </ListItem>
               </Link>
-              {/* {['My Account', 'Liked', 'Recently Played'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index === 0 ? <AccountBoxIcon className={classes.iconStyle}/> 
-                : index === 1 ? 
-                <FavoriteIcon className={classes.iconStyle}/> 
-                : <PlaylistAddCheckIcon className={classes.iconStyle} />
-}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))} */}
             </List>
-            {/* <Divider style={{backgroundColor: '#303C55'}}/> */}
-            {/* <List>
-            {['My Playlists'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <HeadsetIcon className={classes.iconStyle}/> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List> */}
           </div>
         </Drawer>
       </div>

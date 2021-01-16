@@ -184,7 +184,7 @@ class Navbar extends React.Component {
   };
 
   handleClose = () => {
-    this.setState({ openForm: false, userName: "", password: "" });
+    this.setState({ openForm: false, userName: "", password: "", hasAccount: true });
   };
 
   handleChange = (name) => (event) => {
@@ -469,6 +469,7 @@ class Navbar extends React.Component {
               <Button
                 onClick={() => {
                   this.setState({
+                    hasAccount: true,
                     openForm: false,
                     userName: "",
                     password: "",

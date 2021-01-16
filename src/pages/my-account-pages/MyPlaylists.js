@@ -1,16 +1,10 @@
 import React, { Component } from "react";
 import ClippedDrawer from "./ClippedDrawer";
 import { withStyles } from "@material-ui/core/styles";
-import {
-  Card,
-  CardBody,
-  CardTitle,
-  Col,
-  Row,
-  Container,
-} from "reactstrap";
+import { Card, CardBody, CardTitle, Col, Row, Container } from "reactstrap";
 import { Link } from "react-router-dom";
-import MyAccountSerivces from '../../service/MyAccountSerivces'
+import MyAccountSerivces from "../../service/MyAccountSerivces";
+
 import Cookies from "js-cookie";
 
 const useStyles = (theme) => ({
@@ -24,14 +18,14 @@ const useStyles = (theme) => ({
     float: "left",
   },
   card: {
-    cursor: 'pointer',
+    cursor: "pointer",
     border: "2px solid #282828",
     borderRadius: "5px",
-    padding: "20px",
+    padding: "40px",
     background:
       "linear-gradient(-180deg, rgba(254, 107, 139, 0.7) 0%, rgba(255, 142, 83, 0.7) 100%)",
     color: "white",
-    margin: "8px 5px 8px",
+    margin: "10px 10px 10px",
     height: "100px",
     width: "100px",
     textAlign: "center",
@@ -49,19 +43,24 @@ class MyPlaylists extends Component {
   constructor(props) {
     super(props);
     this.state = {
-    userId: Cookies.get("userId"),
-    playlists: []
+      userId: Cookies.get("userId"),
+      playlists: [],
+      categories: [],
+      subcategories: [],
     };
   }
   componentDidMount() {
-    MyAccountSerivces.getPlaylistsById(this.state.userId).then(
-        (response) => {
+    this.getData();
+  }
+
+  getData = () => {
+    MyAccountSerivces.getPlaylistsById(this.state.userId).then((response) => {
       this.setState({
         playlists: response.data,
       });
-      console.log(this.state.playlists);
     });
-  }
+  };
+
   render() {
     const { classes } = this.props;
     return (
@@ -75,25 +74,27 @@ class MyPlaylists extends Component {
             webkitTextFillColor: "transparent",
           }}
         >
-          Library
+          My Playlists
         </h1>
 
-        <Container>
+        <Container >
           {this.state.playlists.map((item) => (
-          
-          <Row className={classes.row}>
-            <Col md={3}>
-            <Link to="/playlist-songs" style={{textDecoration: 'none'}}>
-              <Card className={classes.card}>
-                <CardBody>
-                  <CardTitle>
-                    <h3>{item.title}</h3>
-                  </CardTitle>
-                </CardBody>
-              </Card>
-              </Link>
-            </Col>
-          </Row>
+            <Row className={classes.row} >
+              <Col md={3} >
+                <Link
+                  to={{ pathname: `/playlist-songs/${item.playlistId}` }}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Card className={classes.card}>
+                    <CardBody>
+                      <CardTitle>
+                        <h2 style={{textAlign: "center"}}>{item.title}</h2>
+                      </CardTitle>
+                    </CardBody>
+                  </Card>
+                </Link>
+              </Col>
+            </Row>
           ))}
         </Container>
 

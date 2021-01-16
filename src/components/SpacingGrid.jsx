@@ -23,7 +23,7 @@ const styles = theme => ({
   paper: {
     height: 200,
     width: 200,
-    margin:"50px"
+    margin: "50px 25px 10px 25px"
   },
   
 });
@@ -51,13 +51,11 @@ class SpacingGrid extends React.Component {
           <Grid container className={classes.demo}  >
             {this.props.subcategories.map(subcategory => (
               <Grid key={subcategory} item>
-                <Paper className={classes.paper} style={{backgroundImage:`${subcategory.imageUrl}`}}>
-               
-            
+                <Paper className={classes.paper} style={{backgroundImage:`${subcategory.imageUrl}`}}>    
             <img className="subcategory-image"  src={`${subcategory.imageUrl}`}   style={{objectFit: "cover", width:  "200px",    height: "200px", cursor: 'pointer'}}
              onClick={()=>this.props.history.push(`/songs/${this.props.categoryId}/${subcategory.subCategoryId}`)}  />
             </Paper>
-            <div>{subcategory.subCategoryId}</div>
+            <div style={{textAlign: "center", fontSize: "20px", textTransform: "capitalize"}}>{subcategory.subCategoryId}</div>
               </Grid>
             ))}
           </Grid>

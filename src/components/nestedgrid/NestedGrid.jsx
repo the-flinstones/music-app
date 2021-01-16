@@ -29,8 +29,8 @@ function FormRow(props) {
             <div className="accounts-song-tile">
             <img className="accounts-thumbnail-pic" src={props.song.thumbnailUrl}/>
                     <div className="accounts-details">
-                  <span className="accounts-song-title">{props.song.title}</span>
-                  <span className="accounts-song-artist">{props.song.artist}</span>
+                  <span className="accounts-song-title" style={{textTransform: "capitalize"}}>{props.song.title}</span>
+                  <span className="accounts-song-artist" style={{textTransform: "capitalize"}}>{props.song.artist}</span>
                   
                   </div> 
                   <CircleMediaPlayer onClick={()=>(localStorage.setItem('current-song'))} src={props.song.songUrl}/>          

@@ -23,7 +23,6 @@ class MyAccountSerivces{
   deleteAccountDetails(email) {
     return axios.delete(`${API_URL}/user/${email}`);
   }
-
   getPlaylistsById(userId) {
     return http.get(`/api/v1/playlist/${userId}`);
   }

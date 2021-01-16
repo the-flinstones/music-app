@@ -42,7 +42,7 @@ function Routes() {
           auth={auth}
         />
         <PrivateRoute
-          path="/playlist-songs"
+          path="/playlist-songs/:playlistId"
           component={SongsInPlaylist}
           auth={auth}
         />
