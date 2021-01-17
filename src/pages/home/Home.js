@@ -46,7 +46,7 @@ class Home extends Component {
             webkitTextFillColor: "transparent",
           }}
         >
-          Home Page
+          Home
         </h1>
         </div>
             <div className="directory" style={{margin:"2%", padding:"2%"}}> 

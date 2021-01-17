@@ -41,5 +41,8 @@ class SongService{
   addLikedByUserId(userId,song){
     return http.post(`/user/liked/song/${userId}`,song);
   }
+  postNewPlaylist(playlist) {
+    return http.post(`/api/v1/playlist`, playlist);
+  }
 }
 export default new SongService();
