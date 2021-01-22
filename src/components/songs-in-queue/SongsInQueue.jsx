@@ -225,7 +225,7 @@ class SongsInQueue extends Component {
       );
 
     if (this.state.category === "album")
-      SongService.getSongsByLanguage(this.state.subcategory).then(
+      SongService.getSongsByAlbum(this.state.subcategory).then(
         (response) => {
           this.setState(
             {

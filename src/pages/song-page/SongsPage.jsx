@@ -50,11 +50,11 @@ class SongsPage extends Component {
     },()=>{console.log(this.state.songs)})
   })  ;
   if(this.state.category==="album")
-  SongService.getSongsByLanguage(this.state.subcategory)
+  SongService.getSongsByAlbum(this.state.subcategory)
   .then((response)=>{
     this.setState({
       songs:response.data
-    },()=>{console.log(this.state.songs)})
+    },()=>{console.log(this.state.subcategory,this.state.category,this.state.songs,"*******************")})
   })  ;
     
   if(this.state.category==="actor")
@@ -107,7 +107,7 @@ class SongsPage extends Component {
          <div className="song-info" >
          <img className="banner"  src={this.state.currentSong.bannerUrl} />
          <div className="action">           
-                    {this.state.liked?<FavouriteIcon style={{ fontSize: 40 }} />:<FavouriteBorderIcon style={{ fontSize: 40 }}  onClick={(e)=> this.handleSongLiked(this.state.currentSong)}/>}
+                    { this.state.currentSong && Cookies.get("userId") ? this.state.liked?<FavouriteIcon style={{ fontSize: 40 }} />:<FavouriteBorderIcon style={{ fontSize: 40 }}  onClick={(e)=> this.handleSongLiked(this.state.currentSong)}/>:null}
                     
                     </div>
            

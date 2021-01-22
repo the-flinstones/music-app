@@ -17,8 +17,11 @@ class SongService{
   getSongsByLanguage(language) {
     return http.get(`/api/v1/songs/lang/${language}`);
   }  
-  getSongsByActor(album) {
-    return http.get(`/api/v1/songs/actor/${album}`);
+  getSongsByAlbum(album) {
+    return http.get(`/api/v1/songs/album/${album}`);
+  } 
+  getSongsByActor(actor) {
+    return http.get(`/api/v1/songs/actor/${actor}`);
   } 
   getSongById(id) {
     return http.get(`/api/v1/songs/${id}`);

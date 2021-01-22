@@ -15,6 +15,8 @@ class Category extends Component {
   }
 
   getSubCategories = () => {
+
+
     SongService.getSubCategories(this.state.category).then((response) => {
       this.setState(
         {
@@ -42,7 +44,7 @@ class Category extends Component {
           }}
         >
           {/* Category{" "} */}
-          {console.log(this.state.subcategories)}
+          {console.log(this.props.match.params.category,this.state.subcategories)}
           {this.props.match.params.category}
         </h1>
         <br />

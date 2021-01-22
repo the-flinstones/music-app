@@ -273,7 +273,7 @@ class Navbar extends React.Component {
    
   };
   handelFetchRecents = () =>{
-    console.log("ggggggggggggggggggggggggggggggggggggggggggggggggggggg")
+  
    SongService.getRecentsByUserId(Cookies.get("userId"))
    .then((recents)=>{
     localStorage.setItem("recents", JSON.stringify(recents.data.recentlyPlayedSongs));
@@ -415,7 +415,7 @@ class Navbar extends React.Component {
         </AppBar>
         {value === 0 && <Redirect to="/" />}
         {value === 1 && <Redirect to="/mood" />}
-        {value === 2 && <Redirect to="/albums" />}
+        {value === 2 && <Redirect to="/album" />}
         {value === 3 && <Redirect to="/artist" />}
         {value === 4 && <Redirect to="/account-details" />}
 
