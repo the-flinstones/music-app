@@ -50,7 +50,7 @@ class SwiperNav extends Component{
                 <div className="container" onClick={()=>this.props.history.push(`/songs/${this.props.categoryId}/${subcategory.subCategoryId}`)}>
                 <img className="label-image"  src={`${subcategory.imageUrl}`}     />
                 <div class="overlay">
-                  <div class="text">{subcategory.subCategoryId}</div>
+                  <div class="text" style={{textTransform: "capitalize"}}>{subcategory.subCategoryId}</div>
                 </div>             
                 </div>    
               {/* </div> */}

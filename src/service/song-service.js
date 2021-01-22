@@ -16,13 +16,33 @@ class SongService{
   }
   getSongsByLanguage(language) {
     return http.get(`/api/v1/songs/lang/${language}`);
-  }
-  
+  }  
   getSongsByActor(album) {
     return http.get(`/api/v1/songs/actor/${album}`);
+  } 
+  getSongById(id) {
+    return http.get(`/api/v1/songs/${id}`);
   }
-  
-  
-
+  getRecentsByUserId(userId){
+    return http.get(`/api/v1/user/recent/${userId}`);
+  }
+  postRecentsByUserId(userId,recentlyPlayedSongs){
+    return http.post(`/api/v1/user/recent/${userId}`,recentlyPlayedSongs);
+  }
+  ifSongExistsInLikedSongsList(userId,songId){
+    return http.get(`/user/liked/${userId}/${songId}`);
+  }
+  getLikedByUserId(userId){
+    return http.get(`/user/liked/${userId}`);
+  }
+  postLikedByUserId(userId,liked){
+    return http.post(`/user/liked/liked/${userId}`,liked);
+  }
+  addLikedByUserId(userId,song){
+    return http.post(`/user/liked/song/${userId}`,song);
+  }
+  postNewPlaylist(playlist) {
+    return http.post(`/api/v1/playlist`, playlist);
+  }
 }
 export default new SongService();

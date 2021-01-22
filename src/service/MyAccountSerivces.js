@@ -23,9 +23,11 @@ class MyAccountSerivces{
   deleteAccountDetails(email) {
     return axios.delete(`${API_URL}/user/${email}`);
   }
-
   getPlaylistsById(userId) {
     return http.get(`/api/v1/playlist/${userId}`);
+  }
+  createNewUser(user) {
+    return axios.post(`${API_URL}/user`, user)
   }
 }
 export default new MyAccountSerivces();

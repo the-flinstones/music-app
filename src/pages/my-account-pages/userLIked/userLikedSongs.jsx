@@ -1,14 +1,31 @@
 import React, { Component } from 'react'
 import ClippedDrawer from './ClippedDrawer';
 import NestedGrid from '../../components/nestedgrid/NestedGrid'
+import songService from '../../../service/song-service';
 
-class RecentlyPlayed extends Component {
+class UserLikedSongs extends Component {
+    constructor(props) {
+        super(props);
+        
+        this.state = {
+          songs:[]
+    
+        };
+      }
+    componentDidMount() {
+     SongService.getLikedByUserId(Cookies.get("userId"))
+       .then((response)=>{
+          this.setState({
+            songs:response.data
+          })
+        }) 
+    } 
     render() {
         return (
             <div className="listing-space">
         <h1
           style={{
-            marginLeft: '25%',
+            marginLeft: '6%',
             marginTop: "7%",
             fontSize: "45px",
             fontWeight: 700,
@@ -17,16 +34,14 @@ class RecentlyPlayed extends Component {
             webkitTextFillColor: "transparent",
           }}
         >
-          Recently Played
+          Liked 
         </h1>
         <ClippedDrawer />
-        <div style={{marginLeft: '25%'}}>
-        <NestedGrid recentlyPlayed={localStorage.getItem("recent")} />
-        </div>
+        <NestedGrid recentlyPlayed={this.state.songs} />
       </div>
 
         )
     }
     
 }
-export default RecentlyPlayed;
+export default UserLikedSongs;

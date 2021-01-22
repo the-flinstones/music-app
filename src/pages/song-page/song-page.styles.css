@@ -4,7 +4,19 @@
     grid-template-columns: 1fr 2fr 2fr;
     grid-template-rows: 700px 125px 90px;
     align-content: stretch;
+    margin-top: 70px;
 
+  }
+  .action{  
+      position: absolute;
+      top: 10%;
+      right: 5%;
+      color: rgb(236, 58, 27);
+    box-shadow: inset;
+    
+      z-index: 1000;
+    
+    
   }
   .banner{
     height: 100%;

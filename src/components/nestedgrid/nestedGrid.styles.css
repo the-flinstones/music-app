@@ -1,0 +1,55 @@
+.accounts-song-tile{
+    display: flex;
+    flex-direction: row;
+    align-items:stretch;
+    justify-content:left;
+   
+    background-color: rgb(57, 65, 77);  
+    border-bottom: 1px solid rgb(11, 31, 61);
+    align-items: center;
+    padding: 2%;
+  
+  
+}
+.accounts-tile:hover{
+    
+    background :  linear-gradient(to bottom right,  rgb(48, 64, 85) 0%,   rgb(119, 53, 53) 100%);;
+}
+
+.accounts-details{
+    display: flex;
+    flex-direction: column;
+    min-width: 40%;
+}
+.accounts-options{
+  display: flex;
+  flex-direction: column;
+  min-width: 20%;
+  align-self: center;
+  color: rgb(255, 8, 90);
+
+}
+.accounts-song-title{
+    margin-left: 5%;
+    font-size: 25px;
+    color: white;
+    margin-bottom: 2%;
+   
+    
+     
+}
+.accounts-thumbnail-pic{
+    height: 100px;
+    width: 100px;
+    border-radius: 10%;
+    margin-right: 2%;
+    margin-left: 5%;
+    align-self: center; 
+}
+.accounts-song-artist{
+       
+    margin-left: 5%;
+    font-size: 12px;
+    color: rgb(192, 190, 190);
+     
+}

@@ -1,83 +1,81 @@
-import React, { Component } from 'react'
-import { withStyles } from '@material-ui/core/styles'
-import ClippedDrawer from './ClippedDrawer'
-import MyAccountSerivces from '../../service/MyAccountSerivces'
-import Cookies from 'js-cookie'
+import React, { Component } from "react";
+import ClippedDrawer from "./ClippedDrawer";
+import NestedGridLiked from "../../components/nestedgrid/NestedGridLiked";
+import SongService from "../../service/song-service";
+import MyAccountSerivces from "../../service/MyAccountSerivces";
+import Cookies from "js-cookie";
 
-const useStyles = (theme) => ({
-    root: {
-      margin: "7% 5% 5% 26%",
-    },
-    row: {
-      display: "flex",
-      justifyContent: "space-evenly",
-      flexWrap: "wrap",
-      float: "left",
-    },
-    card: {
-      cursor: 'pointer',
-      border: "2px solid #282828",
-      borderRadius: "5px",
-      padding: "20px",
-      background:
-        "linear-gradient(-180deg, rgba(254, 107, 139, 0.7) 0%, rgba(255, 142, 83, 0.7) 100%)",
-      color: "white",
-      margin: "8px 5px 8px",
-      height: "100px",
-      width: "100px",
-      textAlign: "center",
-      "&:hover": {
-        background:
-          "linear-gradient(-180deg, rgb(254, 107, 139) 0%, rgb(255, 142, 83) 100%)",
-        fontSize: "20px",
-        height: "112px",
-        width: "112px",
-      },
-    },
-  });
-  
-  class SongsInPlaylist extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        userId: Cookies.get("userId"),
-        playlistId: "e605a820-f6aa-5678-ab95-fdac688c1a3b",
-        user: [{}],
-        };
-      }
-      componentDidMount() {
-        MyAccountSerivces.getAllSongsByPlaylistIdUserId(this.state.userId, this.state.playlistId).then(
-            (response) => {
+class SongsInPlaylist extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      songs: [],
+      playlistId: this.props.match.params.playlistId,
+      userId: Cookies.get("userId"),
+      userPlaylist: [],
+      userPlaylistSongId: [],
+      userPlaylistSongs: [],
+    };
+  }
+  componentDidMount() {
+    SongService.getLikedByUserId(this.state.userId).then((response) => {
+      console.log(response.data.likedSongs);
+      this.setState({
+        songs: response.data.likedSongs,
+      });
+    });
+
+    MyAccountSerivces.getAllSongsByPlaylistIdUserId(
+      this.state.userId,
+      this.state.playlistId
+    ).then((response) => {
+      this.setState({
+        userPlaylist: response.data,
+      });
+      console.log("Playlists", response.data);
+      this.state.userPlaylist.map(
+        (item) => (
           this.setState({
-            user: response.data,
+            userPlaylistSongId: item.songId,
+          }),
+          console.log("Song ID", item.songId)
+        )
+      );
+      var newSong;
+      // for(var i = 0; i < this.state.userPlaylistSongId.length; i++)
+      this.state.userPlaylistSongId.map((item) =>
+        SongService.getSongById(item).then((response) => {
+          newSong = response.data;
+          this.setState({
+            userPlaylistSongs: [...this.state.userPlaylistSongs, newSong],
           });
-          console.log(response.data);
-        });
-      }
-
-    render() {
-      const { classes } = this.props;
-      return (
-        <div className={classes.root}>
-          <h1
-            style={{
-              fontSize: "45px",
-              fontWeight: 700,
-              background: "linear-gradient(45deg, #FE3762 30%, #FF742B 90%)",
-              webkitBackgroundClip: "text",
-              webkitTextFillColor: "transparent",
-            }}
-          >
-            Library
-          </h1>
-          <div>
-          {this.state.user.map((item) => (
-          <h1>{item.songId}</h1>
-           ))} </div>
-          <ClippedDrawer />
-          </div>
-          )
-        }
+          console.log("UserPlaylistSOngs", this.state.userPlaylistSongs);
+        })
+      );
+    });
+  }
+  render() {
+    return (
+      <div className="listing-space">
+        <h1
+          style={{
+            marginLeft: "25%",
+            marginTop: "7%",
+            fontSize: "45px",
+            fontWeight: 700,
+            background: "linear-gradient(45deg, #FE3762 30%, #FF742B 90%)",
+            webkitBackgroundClip: "text",
+            webkitTextFillColor: "transparent",
+          }}
+        >
+          My Playlists
+        </h1>
+        <ClippedDrawer />
+        <div style={{ marginLeft: "25%" }}>
+          <NestedGridLiked liked={this.state.userPlaylistSongs} />
+        </div>
+      </div>
+    );
+  }
 }
-
-export default withStyles(useStyles)(SongsInPlaylist);
+export default SongsInPlaylist;
