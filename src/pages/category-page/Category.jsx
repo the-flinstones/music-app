@@ -12,6 +12,7 @@ class Category extends Component {
   }
   componentDidMount() {
     this.getSubCategories();
+    
   }
 
   getSubCategories = () => {

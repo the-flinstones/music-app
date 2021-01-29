@@ -348,7 +348,7 @@ class SongsInQueue extends Component {
                 <img
                   className="icon"
                   src={equalizer}
-                  style={{ height: "20px", width: "20px" }}
+                  style={{ height: "20px", width: "20px", cursor: "pointer" }}
                 />
                 <IconButton onClick={() => this.handleAddToPlaylist()}>
                   <PlaylistAddIcon
