@@ -225,7 +225,7 @@ class SongsInQueue extends Component {
       );
 
     if (this.state.category === "album")
-      SongService.getSongsByLanguage(this.state.subcategory).then(
+      SongService.getSongsByAlbum(this.state.subcategory).then(
         (response) => {
           this.setState(
             {
@@ -348,7 +348,7 @@ class SongsInQueue extends Component {
                 <img
                   className="icon"
                   src={equalizer}
-                  style={{ height: "20px", width: "20px" }}
+                  style={{ height: "20px", width: "20px", cursor: "pointer" }}
                 />
                 <IconButton onClick={() => this.handleAddToPlaylist()}>
                   <PlaylistAddIcon

@@ -27,6 +27,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import { Snackbar } from "@material-ui/core";
+import Category from '../pages/category-page/Category'
 
 const useStyles = (theme) => ({
   palette: {
@@ -191,6 +192,7 @@ class Navbar extends React.Component {
     this.setState({
       [name]: event.target.value,
     });
+    
   };
 
   handleSubmit = () => {
@@ -198,6 +200,7 @@ class Navbar extends React.Component {
       isLoggedIn: true,
       openForm: false,
     });
+    
     //Cookies.set("auth", true);
     //window.location.reload();
   };
@@ -273,7 +276,7 @@ class Navbar extends React.Component {
    
   };
   handelFetchRecents = () =>{
-    console.log("ggggggggggggggggggggggggggggggggggggggggggggggggggggg")
+  
    SongService.getRecentsByUserId(Cookies.get("userId"))
    .then((recents)=>{
     localStorage.setItem("recents", JSON.stringify(recents.data.recentlyPlayedSongs));
@@ -415,7 +418,7 @@ class Navbar extends React.Component {
         </AppBar>
         {value === 0 && <Redirect to="/" />}
         {value === 1 && <Redirect to="/mood" />}
-        {value === 2 && <Redirect to="/albums" />}
+        {value === 2 && <Redirect to="/album" />}
         {value === 3 && <Redirect to="/artist" />}
         {value === 4 && <Redirect to="/account-details" />}
 
@@ -525,6 +528,7 @@ class Navbar extends React.Component {
                           errorMessages={["This field is required"]}
                           value={this.state.email}
                           color="secondary"
+                          type="email"
                           InputProps={{
                             className: classes.input,
                           }}
@@ -541,6 +545,7 @@ class Navbar extends React.Component {
                           errorMessages={["This field is required"]}
                           value={this.state.password}
                           type="password"
+                          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                           color="secondary"
                           InputProps={{
                             className: classes.input,
@@ -616,6 +621,7 @@ class Navbar extends React.Component {
                           errorMessages={["This field is required"]}
                           value={this.state.email}
                           color="secondary"
+                          type="email"
                           InputProps={{
                             className: classes.input,
                           }}

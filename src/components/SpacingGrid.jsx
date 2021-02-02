@@ -43,7 +43,7 @@ class SpacingGrid extends React.Component {
 
   render() {
     const { classes } = this.props;
-  console.log(this.props.subcategories)
+  
 
     return (
       <Grid container className={classes.root} >
